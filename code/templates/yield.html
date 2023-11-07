@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Farmer's friend</title>
+
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,700' rel='stylesheet'
+        type='text/css'>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Recursive:wght@500&display=swap" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Damion' rel='stylesheet' type='text/css'>
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/static/css/templatemo-style.css" rel="stylesheet">
+    <link rel="shortcut icon" href="/static/img/favicon.ico" type="image/x-icon" />
+    <script type="text/JavaScript" src="/static/js/cities.js"></script>
+    <style>
+        html body {
+            background-color: #e4e4e4;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="tm-top-header">
+        <div class="container">
+            <div class="row">
+                <div class="tm-top-header-inner">
+                    <div class="tm-logo-container">
+    
+                        <h1 class="tm-site-name tm-handwriting-font">Farmer's Friend</h1>
+                    </div>
+                    <div class="mobile-menu-icon">
+                        <i class="fa fa-bars"></i>
+                    </div>
+                    <nav class="tm-nav">
+                        <ul>
+    
+                            <li><a href="/">Home</a></li>
+                            <li><a href="crop.html">Crop </a></li>
+                            <li><a href="fertilizer.html">Fertilizer</a></li>
+                            <li><a href="disease.html">Disease</a></li>
+                            <li><a href="yield.html" class="active">Yield</a></li>
+                            <li><a href="pesticide.html">Pesticide</a></li>
+    
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h2 style="text-align: center; margin: 0px; color: black">
+        <br>
+        <b>Yield Prediction</b>
+    </h2>
+    <br />
+
+    <div class="light-gray-bg">
+        <div style="
+                width: 350px;
+                height: 50rem;
+                margin: 0px auto;
+                color: black;
+                border-radius: 25px;
+                padding: 10px 10px;
+            ">
+
+            <form action="/submit3" method="POST">
+
+                <div class="form-group">
+                    <label for="statename" style="font-size: 17px">State Name</label>
+                    <select name="statename" id="statename" class="form-control" style="font-weight: bold"
+        required>
+                        <option value=""> Choose the state name</option>
+                        <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                        <option value="Andhra Pradesh">Andhra Pradesh</option>
+                        <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                        <option value="Assam">Assam</option>
+                        <option value="Bihar">Bihar</option>
+                        <option value="Chandigarh">Chandigarh</option>
+                        <option value="Chhattisgarh">Chhattisgarh</option>
+                        <option value="Dadra and Nagar Haveli">Dadra and Nagar Haveli</option>
+                        <option value="Goa">Goa</option>
+                        <option value="Gujarat">Gujarat</option>
+                        <option value="Haryana">Haryana</option>
+                        <option value="Himachal Pradesh">Himachal Pradesh</option>
+                        <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                        <option value="Jharkhand">Jharkhand</option>
+                        <option value="Karnataka">Karnataka</option>
+                        <option value="Kerala">Kerala</option>
+                        <option value="Madhya Pradesh">Madhya Pradesh</option>
+                        <option value="Maharashtra">Maharashtra</option>
+                        <option value="Manipur">Manipur</option>
+                        <option value="Meghalaya">Meghalaya</option>
+                        <option value="Mizoram">Mizoram</option>
+                        <option value="Nagaland">Nagaland</option>
+                        <option value="Odisha">Odisha</option>
+                        <option value="Puducherry">Puducherry</option>
+                        <option value="Punjab">Punjab</option>
+                        <option value="Rajasthan">Rajasthan</option>
+                        <option value="Sikkim">Sikkim</option>
+                        <option value="Tamil Nadu">Tamil Nadu</option>
+                        <option value="Telangana">Telangana</option>
+                        <option value="Tripura">Tripura</option>
+                        <option value="Uttar Pradesh">Uttar Pradesh</option>
+                        <option value="Uttarakhand">Uttarakhand</option>
+                        <option value="West Bengal">West Bengal</option>
+                       
+                    </select>
+
+
+                </div>
+            
+                <!-- <div class="form-group">
+                    <label for="cropyear" style="font-size: 17px">Crop Year</label>
+                    <input type="text"  class="form-control" id="cropyear" placeholder="Enter cropyear value" name="cropyear" style="font-weight: bold"
+        required>
+
+
+                </div> -->
+                <div class="form-group">
+                    <label for="season">Season</label>
+                    <select name="season" id="season"  class="form-control" style="font-weight: bold"
+        required>
+                        <option value="">Choose the season type</option>
+                        <option value="Autumn">Autumn</option>
+                        <option value="Kharif">Kharif</option>
+                        <option value="Rabi">Rabi</option>
+                        <option value="Summer">Summer</option>
+                        <option value="Whole Year">Whole Year</option>
+                        <option value="Winter">Winter</option>
+                    </select>
+
+
+                </div>
+                <div class="form-group">
+                    <label for="crop" style="font-size: 17px">Crop</label>
+                    <select name="crop" id="crop"  class="form-control" style="font-weight: bold"
+        required>
+                        <option value="">Choose the crop type</option>
+                        <option value="Apple">Apple</option>
+                        <option value="Arcanut (Processed)">Arcanut (Processed)</option>
+                        <option value="Arcanut">Arecanut</option>
+                        <option value="Arhar/Tur">Arhar/Tur</option>
+                        <option value="Ash Gourd">Ash Gourd</option>
+                        <option value="Atcanut (Raw)">Atcanut (Raw)</option>
+                        <option value="Bajra">Bajra</option>
+                        <option value="Banana">Banana</option>
+                        <option value="Barley">Barley</option>
+                        <option value="Bean">Bean</option>
+                        <option value="Beans & Mutter(Vegetable)">Beans & Mutter(Vegetable)</option>
+                        <option value="Beet Root">Beet Root</option>
+                        <option value="Ber">Ber</option>
+                        <option value="Bhindi">Bhindi</option>
+                        <option value="Bitter Gourd">Bitter Gourd</option>
+                        <option value="Black pepper">Black pepper</option>
+                        <option value="Blackgram">Blackgram</option>
+                        <option value="Bottle Gourd">Bottle Gourd</option>
+                        <option value="Brinjal">Brinjal</option>
+                        <option value="Cabbage">Cabbage</option>
+                        <option value="Cardamom">Cardamom</option>
+                        <option value="Carrot">Carrot</option>
+                        <option value="Cashewnut">Cashewnut</option>
+                        <option value="Cashewnut Processed">Cashewnut Processed</option>
+                        <option value="Cashewnut Raw">Cashewnut Raw</option>
+                        <option value="Castor seed">Castor seed</option>
+                        <option value="Cauliflower">Cauliflower</option>
+                        <option value="Citrus Fruit">Citrus Fruit</option>
+                        <option value="Coconut">Coconut</option>
+                        <option value="Coffee">Coffee</option>
+                        <option value="Colocosia">Colocosia</option>
+                        <option value="Cond-spcs other">Cond-spcs other</option>
+                        <option value="Coriander">Coriander</option>
+                        <option value="Cotton(lint)">Cotton(lint)</option>
+                        <option value="Cowpea(Lobia)">Cowpea(Lobia)</option>
+                        <option value="Cucumber">Cucumber</option>
+                        <option value="Drum Stick">Drum Stick</option>
+                        <option value="Dry chillies">Dry chillies</option>
+                        <option value="Dry ginger">Dry ginger</option>
+                        <option value="Garlic">Garlic</option>
+                        <option value="Ginger">Ginger</option>
+                        <option value="Gram">Gram</option>
+                        <option value="Grapes">Grapes</option>
+                        <option value="Groundnut">Groundnut</option>
+                        <option value="Guar seed">Guar seed</option>
+                        <option value="Horse-gram">Horse-gram</option>
+                        <option value="Jack Fruit">Jack Fruit</option>
+                        <option value="Jobster">Jobster</option>
+                        <option value="Jowar">Jowar</option>
+                        <option value="Jute">Jute</option>
+                        <option value="Jute & mesta">Jute & mesta</option>
+                        <option value="Kapas">Kapas</option>
+                        <option value="Khesari">Khesari</option>
+                        <option value="Korra">Korra</option>
+                        <option value="Lab-Lab">Lab-Lab</option>
+                        <option value="Lemon">Lemon</option>
+                        <option value="Lentil">Lentil</option>
+                        <option value="Linseed">Linseed</option>
+                        <option value="Litchi">Litchi</option>
+                        <option value="Maize">Maize</option>
+                        <option value="Mango">Mango</option>
+                        <option value="Masoor">Masoor</option>
+                        <option value="Mesta">Mesta</option>
+                        <option value="Moong(Green Gram)">Moong(Green Gram)</option>
+                        <option value="Moth">Moth</option>
+                        <option value="Niger seed">Niger seed</option>
+                        <option value="Oilseeds total">Oilseeds total</option>
+                        <option value="Onion">Onion</option>
+                        <option value="Orange">Orange</option>
+                        <option value="Other  Rabi pulses">Other Rabi pulses</option>
+                        <option value="Other Cereals & Millet">Other Cereals & Millet</option>
+                        <option value="Other Citrus Fruit">Other Citrus Fruit</option>
+                        <option value="Other Dry Fruit">Other Dry Fruit</option>
+                        <option value="Other Fresh Fruits">Other Fresh Fruits'</option>
+                        <option value="Other Kharif pulses">Other Kharif pulses</option>
+                        <option value="Other Vegetables">Other Vegetables</option>
+                        <option value="Paddy">Paddy</option>
+                        <option value="Papaya">Papaya</option>
+                        <option value="Peach">Peach</option>
+                        <option value="Pear">Pear</option>
+                        <option value="Peas  (vegetable">Peas (vegetable</option>
+                        <option value="Peas & beans (Pulses)">Peas & beans (Pulses)</option>
+                        <option value="Perilla">Perilla</option>
+                        <option value="Pineapple">Pineapple</option>
+                        <option value="Plums">Plums</option>
+                        <option value="Pome Fruit">Pome Fruit</option>
+                        <option value="Pome Granet">Pome Granet</option>
+                        <option value="Potato">Potato</option>
+                        <option value="Pulses total">Pulses total</option>
+                        <option value="Pump Kin">Pump Kin</option>
+                        <option value="Ragi">Ragi</option>
+                        <option value="Rajmash Kholar">Rajmash Kholar</option>
+                        <option value="Rapeseed &Mustard">Rapeseed &Mustard</option>
+                        <option value="Redish">Redish</option>
+                        <option value="Ribed Guard">Ribed Guard</option>
+                        <option value="Rice">Rice</option>
+                        <option value="Ricebean (nagadal)">Ricebean (nagadal)</option>
+                        <option value="Rubber">Rubber</option>
+                        <option value="Safflower">Safflower</option>
+                        <option value="Samai">Samai</option>
+                        <option value="Sannhamp">Sannhamp</option>
+                        <option value="Sapota">Sapota</option>
+                        <option value="Sesamum">Sesamum</option>
+                        <option value="Small millets">Small millets</option>
+                        <option value="Snak Guard">Snak Guard</option>
+                        <option value="Soyabean">Soyabean</option>
+                        <option value="Sugarcane">Sugarcane</option>
+                        <option value="Sunflower">Sunflower</option>
+                        <option value="Sweet potato">Sweet potato</option>
+                        <option value="Tapioca">Tapioca</option>
+                        <option value="Tea">Tea</option>
+                        <option value="Tobacco">Tobacco</option>
+                        <option value="Tomato">Tomato</option>
+                        <option value="Total foodgrain">Total foodgrain</option>
+                        <option value="Turmeric">Turmeric</option>
+                        <option value="Turnip">Turnip</option>
+                        <option value="Urad">Urad</option>
+                        <option value="Varagu">Varagu</option>
+                        <option value="Water Melon">Water Melon</option>
+                        <option value="Wheat">Wheat</option>
+                        <option value="Yam">Yam</option>
+                        <option value="other fibres">other fibres</option>
+                        <option value="other misc. pulses">other misc. pulses</option>
+                        <option value="other oilseeds">other oilseeds</option>
+                    </select>
+                    
+
+
+                </div>
+                <div class="form-group">
+                    <label for="area" style="font-size: 17px">Area</label>
+                    <input type="text"  class="form-control" id="area" placeholder="Enter area " name="area" style="font-weight: bold"
+        required>
+
+
+                </div>
+                <div class="form-group">
+                    <label for="rainfall" style="font-size: 17px">Rainfall</label>
+                    <input type="text"  class="form-control" id="rainfall" placeholder="Enter rainfall value" name="rainfall" style="font-weight: bold"
+        required>
+
+
+                </div>
+
+                <input type="text" hidden id="statenames" name="statevalue">
+                <input type="text" hidden id="seasons" name="seasonvalue">
+                <input type="text" hidden id="crops" name="cropvalue">
+
+                
+                <div class="d-flex justify-content-center">
+                    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                <button type="submit" style="color: #c79c60; font-weight: bold;
+         background-color: black;
+         width: 150px; height:50px; border-radius:12px; font-size: 21px;">submit</button>
+        <br>
+        <br>
+        </div>
+    
+
+            </form>
+
+            <div>
+                {%if prediction%}
+                <h2>{{prediction}}</h2>
+                {%endif%}
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <script>
+        let submit = document.getElementById("submit");
+        console.log(submit);
+        console.log("dsf");
+        let state_name = {
+            "Andaman and Nicobar Islands": 0,
+            "Andhra Pradesh": 1, 
+            "Arunachal Pradesh": 2,
+            "Assam": 3,
+            "Bihar": 4,
+            "Chandigarh": 5,
+            "Chhattisgarh": 6,
+            "Dadra and Nagar Haveli": 7,
+            "Goa": 8,
+            "Gujarat": 9,
+            "Haryana": 10,
+            "Himachal Pradesh": 11,
+            "Jammu and Kashmir": 12, 
+            "Jharkhand": 13,
+            "Karnataka": 14,
+            "Kerala": 15, 
+            "Madhya Pradesh": 16,
+            "Maharashtra": 17,
+            "Manipur": 18,
+            "Meghalaya": 19,
+            "Mizoram": 20,
+            "Nagaland": 21,
+            "Odisha": 22,
+            "Puducherry": 23,
+            "Punjab": 24,
+            "Rajasthan": 25,
+            "Sikkim": 26,
+            "Tamil Nadu": 27,
+            "Telangana": 28,
+            "Tripura": 29,
+            "Uttar Pradesh": 30,
+            "Uttarakhand": 31,
+            "West Bengal": 32
+        }
+        let season_t = {
+            "Autumn": 0,
+            "Kharif": 1,
+            "Rabi": 2,
+            "Summer": 3,
+            "Whole Year": 4,
+            "Winter":5
+
+
+
+        }
+        let crop_t = {
+                "Apple": 0,
+                "Arcanut (Processed)": 1,
+                "Arcanut":2,
+                "Arhar/Tur":3,
+                "Ash Gourd":4,
+                "Atcanut (Raw)":5,
+                "Bajra":6,
+                "Banana":7,
+                "Barley":8,
+                "Bean":9,
+                "Beans & Mutter(Vegetable)":10,
+                "Beet Root":11,
+                "Ber":12, 
+                "Bhindi":13,
+                "Bitter Gourd":14,
+                "Black pepper":15,
+                "Blackgram":16,
+                "Bottle Gourd":17,
+                "Brinjal":18,
+                "Cabbage":19,
+                "Cardamom":20,
+                "Carrot":21,
+                "Cashewnut":22,
+                "Cashewnut Processed":23,
+                "Cashewnut Raw":24,
+                "Castor seed":25,
+                "Cauliflower":26,
+                "Citrus Fruit":27,
+                "Coconut":28,
+                "Coffee":29,
+                "Colocosia":30,
+                "Cond-spcs other":31,
+                "Coriander":32,
+                "Cotton(lint)":33,
+                "Cowpea(Lobia)":34,
+                "Cucumber":35,
+                "Drum Stick":36,
+                "Dry chillies":37,
+                "Dry ginger":38,
+                "Garlic":39,
+                "Ginger":40,
+                "Gram":41,
+                "Grapes":42,
+                "Groundnut":43,
+                "Guar seed":44,
+                "Horse-gram":45,
+                "Jack Fruit":46,
+                "Jobster":47,
+                "Jowar":48,
+                "Jute": 49,
+                "Jute & mesta":50,
+                "Kapas":51,
+                "Khesari":52,
+                "Korra":53,
+                "Lab-Lab":54,
+                "Lemon":55,
+                "Lentil":56,
+                "Linseed":57,
+                "Litchi":58,
+                "Maize":59,
+                "Mango":60,
+                "Masoor":61,
+                "Mesta":62,
+                "Moong(Green Gram)":63,
+                "Moth":64,
+                "Niger seed":65,
+                "Oilseeds total":66,
+                "Onion":67,
+                "Orange":68,
+                "Other  Rabi pulses":69,
+                "Other Cereals & Millets":70,
+                "Other Citrus Fruit":71,
+                "Other Dry Fruit":72,
+                "Other Fresh Fruits":73,
+                "Other Kharif pulses":74,
+                "Other Vegetables":75,
+                "Paddy":76,
+                "Papaya":77,
+                "Peach":78,
+                "Pear":79,
+                "Peas  (vegetable)":80,
+                "Peas & beans (Pulses)":81,
+                "Perilla":82,
+                "Pineapple":83,
+                "Plums":84,
+                "Pome Fruit":85,
+                "Pome Granet":86,
+                "Potato":87,
+                "Pulses total":88,
+                "Pump Kin":89,
+                "Ragi":90,
+                "Rajmash Kholar":91,
+                "Rapeseed &Mustard":92,
+                "Redish":93,
+                "Ribed Guard":94,
+                "Rice":95,
+                "Ricebean (nagadal)":96,
+                "Rubber":97,
+                "Safflower":98,
+                "Samai":99,
+                "Sannhamp":100,
+                "Sapota":101,
+                "Sesamum":102,
+                "Small millets":103,
+                "Snak Guard":104,
+                "Soyabean":105,
+                "Sugarcane":106,
+                "Sunflower":107,
+                "Sweet potato":108,
+                "Tapioca":109,
+                "Tea":110,
+                "Tobacco":111,
+                "Tomato":112,
+                "Total foodgrain":113,
+                "Turmeric":114,
+                "Turnip":115,
+                "Urad":116,
+                "Varagu":117,
+                "Water Melon":118,
+                "Wheat":119,
+                "Yam":120,
+                "other fibres":121,
+                "other misc. pulses":122,
+                "other oilseeds":123
+
+
+            }
+
+
+        let statename = document.getElementById("statename");
+        statename.addEventListener("change", (event) => {
+            document.getElementById("statenames").value = state_name[statename.value];
+            
+        })
+
+
+        let season= document.getElementById("season");
+        season.addEventListener("change", (event) => {
+            document.getElementById("seasons").value = season_t[season.value];
+        })
+        
+        let crop=document.getElementById("crop")
+        crop.addEventListener("change", (event) => {
+            document.getElementById("crops").value = crop_t[crop.value];
+            console.log(crop_t[crop.value])
+
+        })
+
+    </script>
+</body>
+
+</html>

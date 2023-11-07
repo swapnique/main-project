@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Farmer's friend</title>
+
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,700' rel='stylesheet'
+        type='text/css'>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Recursive:wght@500&display=swap" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Damion' rel='stylesheet' type='text/css'>
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/static/css/templatemo-style.css" rel="stylesheet">
+    <link rel="shortcut icon" href="/static/img/favicon.ico" type="image/x-icon" />
+    <script type="text/JavaScript" src="/static/js/cities.js"></script>
+    <style>
+        html body {
+            background-color: #e4e4e4;
+        }
+    </style>
+</head>
+
+<body>
+<div class="tm-top-header">
+    <div class="container">
+        <div class="row">
+            <div class="tm-top-header-inner">
+                <div class="tm-logo-container">
+
+                    <h1 class="tm-site-name tm-handwriting-font">Farmer's Friend</h1>
+                </div>
+                <div class="mobile-menu-icon">
+                    <i class="fa fa-bars"></i>
+                </div>
+                <nav class="tm-nav">
+                    <ul>
+
+                        <li><a href="/">Home</a></li>
+                        <li><a href="crop.html">Crop </a></li>
+                        <li><a href="fertilizer.html">Fertilizer</a></li>
+                        <li><a href="disease.html">Disease</a></li>
+                        <li><a href="yield.html">Yield</a></li>
+                        <li><a href="pesticide.html"class="active">Pesticide</a></li>
+
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <br /><br />
+    <h2 style="text-align: center; margin: 0px; color: black">
+        <b>Recommended pesticide based on pest</b>
+    </h2>
+    <h3 align="center">Please select the pest, so that we can recommend you, the pesticide accordingly!</h3>
+    <br />
+
+    <div style=" 
+    width: 350px;
+    height: 12rem;
+    margin: 0px auto;
+    color: black;
+    border-radius: 25px;
+    padding: 10px 10px;
+  ">
+        <form method="POST" action="/pestpredict">
+            <div class="form-group">
+                <div class="form-group">
+                    <label for="pest" style="font-size: 17px"><b>Select the pest</b></label>
+                    <select name="pestname" class="form-control" id="pest" placeholder="Select a pest"
+                        style="font-weight: bold" required>
+                        <option selected>-- Select Option</option>
+                        <option>aphids</option>
+                        <option>armyworm</option>
+                        <option>beetle</option>
+                        <option>bollworm</option>
+                        <option>earthworm</option>
+                        <option>grasshopper</option>
+                        <option>mites</option>
+                        <option>mosquito</option>
+                        <option>sawfly</option>
+                        <option>stemborer</option>
+                    </select>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="row d-flex justify-content-center" id="output">
+
+    </div>
+
+
+    <!-- JS -->
+
+    <script>
+
+
+        let aphids = ['/static/assets/aphids1.jpg', '/static/assets/aphids2.jpg', '/static/assets/aphids3.jpg'];
+        let aphidsvalues = ['Dose: 330 ml/acre', 'Dose: 600 gm/Ha', 'Dose: 1000 ml/Ha'];
+        let armyworm = ['/static/assets/armyworm1.jpg', '/static/assets/armyworm2.jpg'];
+        let armywormvalues = ['Dose: 2.5-3.5 Tbsp/ 16 L', 'Dose: 500 gm/L'];
+        let beetle = ['/static/assets/beetle.jpg'];
+        let beetlevalues = ['Dose: 1.0-3.0 Tbsp/16 L'];
+        let bollworm = ['/static/assets/bollworm1.jpg', '/static/assets/bollworm2.jpg', '/static/assets/bollworm3.jpg'];
+        let bollwormvalues = ['Dose: 160-280 ml/Ha', 'Dose: 220 gm/Ha', 'Dose: 1000 ml/Ha'];
+        let earthworm = ['/static/assets/earthworm1.jpg', '/static/assets/earthworm2.jpg',];
+        let earthwormvalues = ['Dose: 570 gm/L', 'Dose: 1.0-4.5 Tbsp/16 L'];
+        let grasshopper = ['/static/assets/grasshopper1.jpg', '/static/assets/grasshopper2.jpg'];
+        let grasshoppervalues = ['Dose: 570 gm/L', 'Dose: 2.5-3.5 Tbsp/16 L'];
+        let mites = ['/static/assets/mites1.jpg', '/static/assets/mites2.jpg', '/static/assets/mites3.jpg'];
+        let mitesvalues = ['Dose: 220 gm/Ha', 'Dose: 570 gm/L', 'Dose:200 gm/Ha'];
+        let mosquito = ['/static/assets/mosquito1.jpg', '/static/assets/mosquito2.jpg'];
+        let mosquitovalues = ['Dose: 400-500 gm/Ha', 'Dose: 100 gm/Ha'];
+        let sawfly = ['/static/assets/sawfly1.jpg'];
+        let sawflyvalues = ['Dose: 1250 ml/Ha'];
+        let stemborer = ['/static/assets/stemborer1.jpg', '/static/assets/mosquito1.jpg'];
+        let stemborervalues = ['Dose: 1000 ml/Ha', 'Dose: 24 gm/Ha'];
+
+
+        let dropdown = document.getElementById("pest");
+        let output = document.getElementById("output");
+        dropdown.addEventListener("change", () => {
+            let division = ""
+            let selected = dropdown.value;
+            //first image
+            if (selected == 'aphids') {
+                for (let i = 0;i < aphids.length;i++) {
+                    division = division + `<div class="col col-md-4 d-flex justify-content-center ">
+                    <div>
+                        <img src="${aphids[i]}">
+                         <h3>${aphidsvalues[i]}</h3>
+                        </div>
+                </div>`;
+                    console.log(division)
+                    output.innerHTML = division;
+                }
+            }
+            //second img
+            if (selected == 'armyworm') {
+                for (let i = 0;i < armyworm.length;i++) {
+                    division = division + `<div class="col col-md-4 d-flex justify-content-center ">
+                    <div>
+                        <img src="${armyworm[i]}" width="300px">
+                         <h3>${armywormvalues[i]}</h3>
+                        </div>
+                </div>`;
+                    console.log(division)
+                    output.innerHTML = division;
+                }
+            }
+            //third image
+            if (selected == 'beetle') {
+                for (let i = 0;i < beetle.length;i++) {
+                    division = division + `<div class="col col-md-4 d-flex justify-content-center ">
+                    <div>
+                        <img src="${beetle[i]}" width="300px">
+                         <h3>${beetlevalues[i]}</h3>
+                        </div>
+                </div>`;
+                    console.log(division)
+                    output.innerHTML = division;
+                }
+            }
+            //forth image
+            if (selected == 'bollworm') {
+                for (let i = 0;i < bollworm.length;i++) {
+                    division = division + `<div class="col col-md-4 d-flex justify-content-center ">
+                    <div>
+                        <img src="${bollworm[i]}" width="300px">
+                         <h3>${bollwormvalues[i]}</h3>
+                        </div>
+                </div>`;
+                    console.log(division)
+                    output.innerHTML = division;
+                }
+            }
+            //fifth image
+            if (selected == 'earthworm') {
+                for (let i = 0;i < earthworm.length;i++) {
+                    division = division + `<div class="col col-md-4 d-flex justify-content-center ">
+                    <div>
+                        <img src="${earthworm[i]}" width="300px">
+                         <h3>${earthwormvalues[i]}</h3>
+                        </div>
+                </div>`;
+                    console.log(division)
+                    output.innerHTML = division;
+                }
+            }
+
+            if (selected == 'grasshopper') {
+                for (let i = 0;i < grasshopper.length;i++) {
+                    division = division + `<div class="col col-md-4 d-flex justify-content-center ">
+                    <div>
+                        <img src="${grasshopper[i]}" width="300px">
+                         <h3>${grasshoppervalues[i]}</h3>
+                        </div>
+                </div>`;
+                    console.log(division)
+                    output.innerHTML = division;
+                }
+            }
+            //sixth image
+            if (selected == 'mites') {
+                for (let i = 0;i < mites.length;i++) {
+                    division = division + `<div class="col col-md-4 d-flex justify-content-center ">
+                    <div>
+                        <img src="${mites[i]}" width="300px">
+                         <h3>${mitesvalues[i]}</h3>
+                        </div>
+                </div>`;
+                    console.log(division)
+                    output.innerHTML = division;
+                }
+            }
+            //sixth image
+            if (selected == 'mosquito') {
+                for (let i = 0;i < mosquito.length;i++) {
+                    division = division + `<div class="col col-md-4 d-flex justify-content-center ">
+                    <div>
+                        <img src="${mosquito[i]}" width="300px">
+                         <h3>${mosquitovalues[i]}</h3>
+                        </div>
+                </div>`;
+                    console.log(division)
+                    output.innerHTML = division;
+                }
+            }
+            //sixth image
+            if (selected == 'sawfly') {
+                for (let i = 0;i < sawfly.length;i++) {
+                    division = division + `<div class="col col-md-4 d-flex justify-content-center ">
+                    <div>
+                        <img src="${sawfly[i]}" width="300px">
+                         <h3>${sawflyvalues[i]}</h3>
+                        </div>
+                </div>`;
+                    console.log(division)
+                    output.innerHTML = division;
+                }
+            }
+            //sixth image
+            if (selected == 'stemborer') {
+                for (let i = 0;i < stemborer.length;i++) {
+                    division = division + `<div class="col col-md-4 d-flex justify-content-center ">
+                    <div>
+                        <img src="${stemborer[i]}" width="300px">
+                         <h3>${stemborervalues[i]}</h3>
+                        </div>
+                </div>`;
+                    console.log(division)
+                    output.innerHTML = division;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

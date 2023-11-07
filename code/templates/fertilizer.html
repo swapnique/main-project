@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Farmer's friend</title>
+
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,700' rel='stylesheet'
+        type='text/css'>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Recursive:wght@500&display=swap" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Damion' rel='stylesheet' type='text/css'>
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/static/css/templatemo-style.css" rel="stylesheet">
+    <link rel="shortcut icon" href="/static/img/favicon.ico" type="image/x-icon" />
+    <script type="text/JavaScript" src="/static/js/cities.js"></script>
+    <style>
+        html body {
+            background-color: #e4e4e4;
+        }
+    </style>
+</head>
+
+
+<body>
+    <div class="tm-top-header">
+    <div class="container">
+        <div class="row">
+            <div class="tm-top-header-inner">
+                <div class="tm-logo-container">
+
+                    <h1 class="tm-site-name tm-handwriting-font">Farmer's Friend</h1>
+                </div>
+                <div class="mobile-menu-icon">
+                    <i class="fa fa-bars"></i>
+                </div>
+                <nav class="tm-nav">
+                    <ul>
+
+                        <li><a href="/" >Home</a></li>
+                        <li><a href="crop.html">Crop </a></li>
+                        <li><a href="Fert.html" class="active">Fertilizer </a></li>
+                        <li><a href="disease.html">Disease </a></li>
+                        <li><a href="yield.html">Yield</a></li>
+                        <li><a href="pesticide.html">Pesticide</a></li>
+
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<h2 style="text-align: center; margin: 0px; color: black">
+    <br>
+    <b>FERTILIZER RECOMMENDATION</b>
+</h2>
+<br />
+
+    <div class="light-gray-bg">
+        <div style="
+                width: 350px;
+                height: 50rem;
+                margin: 0px auto;
+                color: black;
+                border-radius: 25px;
+                padding: 10px 10px;
+            ">
+
+            <form action="/submit2" method="POST">
+
+                <div class="form-group">
+                    <label for="temparature" style="font-size: 17px"><b>Temparature</b></label>
+                    <input type="text" class="form-control" id="temparature" placeholder="Enter temparature value" name="temparature">
+
+
+                </div>
+                <div class="form-group ">
+                    <label for="humidity" style="font-size: 17px">Humidity</label>
+                    <input type="text" class="form-control" id="humidity" placeholder="Enter humidity value" name="humidity">
+
+
+                </div>
+               
+                <div class="form-group">
+                    <label for="moisture" style="font-size: 17px">Moisture</label>
+                    <input type="text" class="form-control" id="moisture" placeholder="Enter moisture value" name="moisture">
+
+
+                </div>
+                <div class="form-group">
+                    <label for="soiltype" style="font-size: 17px">Soil Type</label>
+                    <select name="soiltype" id="soiltype" class="form-control">
+                        <option value="">Choose the soil type</option>
+                        <option value="Black">Black</option>
+                        <option value="Clayey">Clayey</option>
+                        <option value="Loamy">Loamy</option>
+                        <option value="Red">Red</option>
+                        <option value="Sandy">Sandy</option>
+                      
+
+
+                    </select>
+                
+                </div>
+                <div class="form-group">
+                    <label for="croptype"  style="font-size: 17px">Crop Type</label>
+                    <select name="croptype" id="croptype" class="form-control">
+                        <option value="">Choose the crop type</option>
+                        <option value="Barley">Barley</option>
+                        <option value="Cotton">Cotton</option>
+                        <option value="Ground">Ground Nuts</option>
+                        <option value="Maize">Maize</option>
+                        <option value="Millets">Millets</option>
+                        <option value="Oil_seeds">Oil seeds</option>
+                        <option value="Paddy">Paddy</option>
+                        <option value="Pulses">Pulses</option>
+                        <option value="sugarcane">Sugarcane</option>
+                        <option value="Tobacco">Tobacco</option>
+                        <option value="Wheat">Wheat</option>
+                       
+                       
+                       
+                        
+                    </select>
+                
+                </div>
+                <div class="form-group">
+                    <label for="nitrogen" style="font-size: 17px">Nitrogen</label>
+                    <input type="text" class="form-control" id="nitrogen" placeholder="Enter nitrogen value" name="nitrogen">
+                </div>
+                <div class="form-group">
+                    <label for="potassium" style="font-size: 17px">Potassium</label>
+                    <input type="text" class="form-control" id="potassium" placeholder="Enter potassium value" name="potassium">
+                </div>
+                <div class="form-group">
+                    <label for="phosphorous" style="font-size: 17px">Phosphorous</label>
+                    <input type="text"  class="form-control" id="phosphorous" placeholder="Enter phosphorous value" name="phosphorous">
+                </div>
+
+                <input type="text" hidden id="soiltypes" name="soilvalue">
+                <input type="text" hidden id="croptypes" name="cropvalue">
+            <div class="d-flex justify-content-center">
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                <button type="submit" id="submit" style="color: #c79c60; font-weight: bold;
+         background-color: black;
+         width: 150px; height:50px; border-radius:12px; font-size: 21px;">Submit</button>
+            <br>
+            <br>
+            </div>
+            </form>
+
+            
+        
+        <div>
+            {%if prediction%}
+            <h2>{{prediction}}</h2>
+            {%endif%}
+        </div>
+
+    </div>
+
+
+<script>
+   let submit = document.getElementById("submit");
+    console.log(submit);
+    console.log("dsf");
+    let soil_types = {
+        "Black": 0,
+        "Clayey": 1,
+        "Loamy": 2,
+        "Red": 3,
+        "Sandy": 4
+    }
+    let crop_types = {
+        "Barley": 0,
+        "Cotton": 1,
+        "Ground": 2,
+        "Maize": 3,
+        "Millets": 4,
+        "Oil_seeds": 5,
+        "Paddy": 6,
+        "Pulses": 7,
+        "sugarcane": 8,
+        "Tobacco": 9,
+        "Wheat": 10
+    }
+
+
+    let soiltype = document.getElementById("soiltype");
+    soiltype.addEventListener("change", (event) => {
+        document.getElementById("soiltypes").value = parseInt(soil_types[soiltype.value]);
+
+    //    console.log(soiltype.value);
+})
+
+
+let croptype = document.getElementById("croptype");
+croptype.addEventListener("change", (event) => {
+    document.getElementById("croptypes").value = parseInt(crop_types[croptype.value]);
+    console.log(crop_types[croptype.value])
+    })
+
+
+</script>
+</body>
+
+</html>
